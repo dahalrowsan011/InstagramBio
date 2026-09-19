@@ -18,16 +18,20 @@ nav{display:flex;gap:18px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;f
 main{max-width:1100px;margin:-25px auto 60px;padding:0 16px}.layout{display:grid;grid-template-columns:230px 1fr;gap:22px}
 .sidebar,.contentbox,.bio-card,.ad{background:var(--card);border:1px solid var(--border);border-radius:16px}.sidebar{padding:15px;height:max-content;position:sticky;top:15px}.sidebar h3{margin:4px 8px 12px;font-size:15px}.cat{display:block;padding:10px 11px;border-radius:10px;color:var(--text);text-decoration:none;font-size:14px}.cat:hover,.cat.active{background:#eeeaff;color:var(--brand);font-weight:700}
 .contentbox{padding:24px}.contentbox h2{margin:0 0 7px;font-size:28px}.contentbox .intro{color:var(--muted);margin-top:0}.ad{min-height:90px;display:flex;align-items:center;justify-content:center;color:#9aa0ad;font-size:12px;margin:18px 0}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.bio-card{padding:17px;position:relative;transition:.18s}.bio-card:hover{transform:translateY(-2px);box-shadow:0 8px 25px #20204010}.bio-text{white-space:pre-line;margin:0 0 13px;padding-right:4px}.copy{font-size:13px;padding:8px 12px}.copy.copied{background:#179b67}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.bio-card{padding:17px;position:relative;transition:transform .18s,box-shadow .18s}@media(hover:hover){.bio-card:hover{transform:translateY(-2px);box-shadow:0 8px 25px #20204010}}.bio-text{white-space:pre-line;margin:0 0 13px;padding-right:4px}.copy{font-size:13px;padding:8px 12px}.copy.copied{background:#179b67}
 .quick{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 22px}.quick button{border:1px solid var(--border);background:#fff;border-radius:999px;padding:8px 12px;cursor:pointer}.quick button:hover{border-color:var(--brand);color:var(--brand)}
 footer{background:#171923;color:#c5c8d2;padding:35px 16px;text-align:center}footer a{color:#fff;text-decoration:none}
 .faq{margin-top:28px}.faq details{border-top:1px solid var(--border);padding:13px 0}.faq summary{font-weight:700;cursor:pointer}
 .quick button.active{border-color:var(--brand);color:var(--brand);background:#eeeaff;font-weight:700}
 .count{color:var(--muted);font-size:13px;margin:0 0 12px}.empty{grid-column:1/-1;color:var(--muted);text-align:center;padding:30px 0}
 .loadmore{display:block;margin:22px auto 0;border:1px solid var(--brand);background:#fff;color:var(--brand);font-weight:800;border-radius:10px;padding:11px 26px;cursor:pointer}.loadmore:hover{background:var(--brand);color:#fff}
+.ad-inline{grid-column:1/-1;display:flex;justify-content:center;align-items:center;min-height:60px;background:#fafafd;border:1px dashed var(--border);border-radius:14px;padding:5px}
+.ad,.ad-inline{overflow:hidden;max-width:100%}.ad iframe,.ad-inline iframe{border:0;width:100%;max-width:320px;height:50px;display:block}
+.ad{flex-direction:column;gap:4px}.ad .tag,.ad-inline .tag{font-size:10px;color:#9aa0ad;letter-spacing:.08em;text-transform:uppercase}
+button,.cat,.quick button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}.bio-text{-webkit-user-select:text;user-select:text}
 [hidden]{display:none!important}
 .copy:focus-visible,.cat:focus-visible,.quick button:focus-visible,.loadmore:focus-visible{outline:3px solid #b9a9ff;outline-offset:2px}
-@media(max-width:760px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:6px}.sidebar h3{display:none}.cat{white-space:nowrap}.grid{grid-template-columns:1fr}.contentbox{padding:18px}nav{display:none}}
+@media(max-width:760px){.copy{width:100%;min-height:44px;font-size:15px}.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:6px}.sidebar h3{display:none}.cat{white-space:nowrap}.grid{grid-template-columns:1fr}.contentbox{padding:18px}nav{display:none}}
 </style>
 </head>
 <body>
@@ -39,7 +43,7 @@ footer{background:#171923;color:#c5c8d2;padding:35px 16px;text-align:center}foot
   <div class="hero">
     <h1>Instagram Bio Ideas ✨</h1>
     <p>Fresh, stylish and original bios for every mood. Find one you like, tap copy, and make your profile yours.</p>
-    <div class="search"><input id="search" placeholder="Search attitude, love, sad, school..."><button onclick="doSearch()">Search</button></div>
+    <div class="search"><input id="search" placeholder="Search attitude, love, sad, school..."><button type="button" id="searchBtn">Search</button></div>
   </div>
 </header>
 
@@ -59,7 +63,7 @@ footer{background:#171923;color:#c5c8d2;padding:35px 16px;text-align:center}foot
 </aside>
 
 <section class="contentbox" id="bios">
-  <div class="ad"></div>
+  <div class="ad" data-banner><span class="tag">Advertisement</span></div>
   <h2 id="title">Instagram Bio Ideas</h2>
   <p class="intro">800 original copy-ready bio ideas — 100 in every category. You can add your own anytime in the <code>bios</code> array.</p>
   <div class="quick">
@@ -69,7 +73,10 @@ footer{background:#171923;color:#c5c8d2;padding:35px 16px;text-align:center}foot
   <p class="count" id="count" aria-live="polite"></p>
   <div class="grid" id="grid"></div>
   <button type="button" class="loadmore" id="more" hidden>Load more bios</button>
-  <div class="ad">ADVERTISEMENT — responsive ad slot</div>
+  <div class="ad"><span class="tag">Advertisement</span>
+    <script async="async" data-cfasync="false" src="https://arkgleamfox.com/9dcacbbf6781bc601ad6853914797c76/invoke.js"></script>
+    <div id="container-9dcacbbf6781bc601ad6853914797c76"></div>
+  </div>
   <div class="faq" id="faq">
     <h2>Frequently Asked Questions</h2>
     <details><summary>How do I copy a bio?</summary><p>Tap the Copy button under any bio. The text is copied to your clipboard.</p></details>
@@ -3963,32 +3970,39 @@ function render(resetPage=true){
     moreBtn.hidden=true;
     return;
   }
-  grid.innerHTML=list.slice(0,shown).map(b=>
+  grid.innerHTML=list.slice(0,shown).map((b,i)=>
     '<article class="bio-card"><p class="bio-text">'+escapeHtml(b.text)+'</p><button type="button" class="copy" data-id="'+b.id+'">Copy Bio</button></article>'
+    +(((i+1)%AD_EVERY===0 && (i+1)/AD_EVERY<=AD_MAX)?'<div class="ad-inline" data-banner><span class="tag">Advertisement</span></div>':'')
   ).join("");
+  scheduleAds();
   countEl.textContent="Showing "+Math.min(shown,list.length)+" of "+list.length+" bios";
   moreBtn.hidden=shown>=list.length;
 }
 
-function copyBio(btn,id){
-  const text=ALL[id].text;
-  const done=()=>{
-    btn.textContent="Copied ✓"; btn.classList.add("copied");
-    clearTimeout(btn._t);
-    btn._t=setTimeout(()=>{btn.textContent="Copy Bio";btn.classList.remove("copied")},1500);
-  };
-  if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
-  }else{ fallbackCopy(text,done); }
+function copyDone(btn){
+  btn.textContent="Copied ✓"; btn.classList.add("copied");
+  clearTimeout(btn._t);
+  btn._t=setTimeout(()=>{btn.textContent="Copy Bio";btn.classList.remove("copied")},1500);
 }
-function fallbackCopy(text,done){
+// runs synchronously inside the tap, so it isn't affected by focus changes from ads/popups
+function legacyCopy(text){
   const ta=document.createElement("textarea");
-  ta.value=text; ta.setAttribute("readonly","");
-  ta.style.position="fixed"; ta.style.left="-9999px"; ta.style.top="0";
-  document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0,ta.value.length);
-  try{ if(document.execCommand("copy")) done(); else throw new Error("copy failed"); }
-  catch(e){ alert("Copy भएन। Bio लाई long-press गरेर Copy गर्नुहोस्।"); }
+  ta.value=text; ta.setAttribute("readonly",""); ta.setAttribute("aria-hidden","true");
+  ta.style.cssText="position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;font-size:16px;pointer-events:none";
+  document.body.appendChild(ta);
+  let ok=false;
+  try{ ta.focus({preventScroll:true}); ta.select(); ta.setSelectionRange(0,text.length); ok=document.execCommand("copy"); }catch(e){}
   document.body.removeChild(ta);
+  return ok;
+}
+function copyBio(btn,id){
+  if(Date.now()-(btn._last||0)<600) return;   // one tap = one copy
+  btn._last=Date.now();
+  const text=ALL[id].text;
+  if(legacyCopy(text)){ copyDone(btn); return; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>copyDone(btn)).catch(()=>alert("Copy भएन। Bio लाई long-press गरेर Copy गर्नुहोस्।"));
+  }else{ alert("Copy भएन। Bio लाई long-press गरेर Copy गर्नुहोस्।"); }
 }
 
 function scrollToBios(){document.getElementById("bios").scrollIntoView({behavior:"smooth",block:"start"});}
@@ -4005,14 +4019,34 @@ function doSearch(){
 }
 
 // Copy buttons (event delegation, works after every re-render)
-grid.addEventListener("click",e=>{
-  const btn=e.target.closest(".copy");
-  if(btn) copyBio(btn,+btn.dataset.id);
-});
+// One central tap handler, first in line (window capture). Ads/popups can't block it,
+// and it still finds the right button if an ad layer is covering the screen.
+const TAP_SEL=".copy,[data-cat],#more,#searchBtn";
+let lastPointer=0;
+function tapTarget(e){
+  const list=[e.target];
+  if(e.clientX||e.clientY) list.push(...document.elementsFromPoint(e.clientX,e.clientY));
+  for(const el of list){ const t=el.closest&&el.closest(TAP_SEL); if(t) return t; }
+  return null;
+}
+function onTap(e){
+  if(e.button>0) return;
+  if(e.type==="click"){
+    const a=e.target.closest&&e.target.closest("a[data-cat]");
+    if(a) e.preventDefault();                                    // no jump to top from href="#"
+    if(Date.now()-lastPointer<700) return;                       // this tap was already handled on pointerup
+  }
+  const t=tapTarget(e); if(!t) return;
+  if(e.type==="pointerup") lastPointer=Date.now();
+  if(t.classList.contains("copy")) copyBio(t,+t.dataset.id);
+  else if(t.dataset.cat) setCat(t.dataset.cat);
+  else if(t.id==="more"){ shown+=PAGE_SIZE; render(false); }
+  else if(t.id==="searchBtn") doSearch();
+}
+window.addEventListener("pointerup",onTap,true);
+window.addEventListener("click",onTap,true);
 // Category links + quick buttons
-document.querySelectorAll("[data-cat]").forEach(x=>x.addEventListener("click",e=>{e.preventDefault();setCat(x.dataset.cat)}));
 // Load more
-moreBtn.addEventListener("click",()=>{shown+=PAGE_SIZE;render(false);});
 // Live search while typing (searches all categories); Enter also works
 searchEl.addEventListener("input",()=>{
   if(searchEl.value.trim()&&active!=="all"){active="all";syncNav();}
@@ -4020,8 +4054,33 @@ searchEl.addEventListener("input",()=>{
 });
 searchEl.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();doSearch();}});
 
+// ===== Ads =====
+const AD_EVERY=8, AD_MAX=4;
+const BANNER_DOC='<!DOCTYPE html><html><body style="margin:0"><script>atOptions={"key":"90b505d8cbe791dd9bff93d99338cb6f","format":"iframe","height":50,"width":320,"params":{}};<\/script><script src="https://arkgleamfox.com/90b505d8cbe791dd9bff93d99338cb6f/invoke.js"><\/script><\/body><\/html>';
+let adTimer;
+const adIO="IntersectionObserver" in window?new IntersectionObserver(es=>{
+  es.forEach(en=>{ if(en.isIntersecting){ adIO.unobserve(en.target); loadBanner(en.target); } });
+},{rootMargin:"300px 0px"}):null;
+function loadBanner(el){
+  if(el.getAttribute("data-filled")) return;
+  const f=document.createElement("iframe");
+  f.width=320; f.height=50; f.scrolling="no"; f.title="Advertisement"; f.srcdoc=BANNER_DOC;
+  el.appendChild(f); el.setAttribute("data-filled","1");
+}
+function fillBanners(){
+  document.querySelectorAll("[data-banner]:not([data-filled])").forEach(el=>{ adIO?adIO.observe(el):loadBanner(el); });
+}
+// wait until typing/re-rendering settles so ad frames don't reload on every keystroke
+function scheduleAds(){ clearTimeout(adTimer); adTimer=setTimeout(fillBanners,700); }
+
+
 syncNav();
 render();
+fillBanners();
 </script>
+<!-- Social Bar -->
+<script src="https://arkgleamfox.com/9d/2e/11/9d2e11418597514ead604dc6400cb7c8.js"></script>
+<!-- Popunder -->
+<script src="https://arkgleamfox.com/89/7a/a6/897aa62f2ded2a7a70cb4e8d42bc59ff.js"></script>
 </body>
 </html>
